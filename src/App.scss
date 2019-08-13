@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+    background-color: yellow;
+    min-height: 100vh;
+    display: flex;
+    &_right{
+      height: 100vh;
+      background-color: red;
+    }
+    &_left{
+      height: 100vh;
+      background-color: blue;
+    }
+}
