@@ -6,7 +6,6 @@ const HomeSide = ({ mouseX, lockedSide, renderSide, title }) => {
   const calcHeight = () => {
     const leftThreshold = 300;
     const thresholdRatio = 0.5;
-    const rightThreshold = window.innerWidth - leftThreshold;
     if (renderSide === 'left') {
       if (mouseX > leftThreshold) {
         return leftThreshold - thresholdRatio * mouseX;
@@ -14,8 +13,8 @@ const HomeSide = ({ mouseX, lockedSide, renderSide, title }) => {
       return thresholdRatio * leftThreshold;
     }
     if (renderSide === 'right') {
-      if (mouseX < rightThreshold) {
-      // return window.innerWidth - (rightThreshold + thresholdRatio * mouseX);
+      if (mouseX < window.innerWidth - leftThreshold) {
+        return leftThreshold - thresholdRatio * (window.innerWidth - mouseX);
       }
       return thresholdRatio * leftThreshold;
     }
