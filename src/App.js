@@ -1,25 +1,38 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.scss';
+import HomeSide from './Components/HomeSide/HomeSide';
 
 const App = () => {
-  const [mouseX, setMouseX] = useState(null)
+  const [mouseX, setMouseX] = useState(null);
+  const [side, setSide] = useState(null);
   useEffect(() => {
-    
     const onMove = e => {
-      setMouseX(e.pageX)
-    }
-    document.addEventListener('mousemove', e => onMove(e),false)
+      setMouseX(e.pageX);
+    };
+    document.addEventListener('mousemove', e => onMove(e), false);
     return () => {
-      document.removeEventListener('mousemove', e => onMove(e), false)
-    }
-  },[])
+      document.removeEventListener('mousemove', e => onMove(e), false);
+    };
+  }, []);
 
   return (
     <div className="App">
-      <div className="App_left" style={ { width: (window.innerWidth - mouseX * 0.9) }}/>
-      <div className="App_right" style={ { width: (window.innerWidth - (window.innerWidth * 0.9 - mouseX ) )}} />
+      <HomeSide
+        renderSide="left"
+        mouseX={mouseX}
+        lockedSide={side}
+        setLeft={() => setSide('left')}
+        title="Full stack web developer"
+      />
+      <HomeSide
+        renderSide="right"
+        mouseX={mouseX}
+        lockedSide={side}
+        setRight={() => setSide('right')}
+        title="UI UX Designer"
+      />
     </div>
   );
-}
+};
 
 export default App;

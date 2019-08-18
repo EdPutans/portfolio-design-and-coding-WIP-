@@ -1,14 +1,18 @@
+
+// colors:
+$gold: #D7B740;
+$silver:#E5E5E5;
+$white: #fff;
+
+:export {
+  silver: $silver;
+  white: $white;
+  gold: $gold;
+}
+
 .App {
-  text-align: center;
-    background-color: yellow;
+  text-align: center;;
     min-height: 100vh;
     display: flex;
-    &_right{
-      height: 100vh;
-      background-color: red;
-    }
-    &_left{
-      height: 100vh;
-      background-color: blue;
-    }
+    align-items: left;
 }

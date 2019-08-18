@@ -1,0 +1,17 @@
+@import '../../App.scss';
+
+.PageSide {
+  height: 100vh;
+  background-color: $silver;
+  overflow: hidden;
+  &_inner{
+    min-width: 600px;
+  }
+  &_title{
+    height: 50px;
+    margin: 0;
+    & h1{
+      padding: 4px;
+    }
+  }
+}

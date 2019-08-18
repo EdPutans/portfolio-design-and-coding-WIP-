@@ -1,0 +1,47 @@
+@import '../../App.scss';
+
+.Homeleft {
+  height: 100vh;
+  background-color: $silver;
+  overflow: hidden;
+  &_inner{
+    min-width: 600px;
+  }
+  &_title{
+    height: 50px;
+    margin: 0;
+    & h1{
+      padding: 4px;
+    }
+  }
+  &_list{
+    &_container{
+      position: absolute;
+    }
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+
+    &_item{
+      text-align: left;
+      font-size: 26px;
+    }
+  }
+}
+
+.Homeright {
+  &_list{
+    &_container{
+      position: absolute;
+      right: 0;
+    }
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding-right: 40px;
+    &_item{
+      text-align: right;
+      font-size: 26px;
+    }
+  }
+}
