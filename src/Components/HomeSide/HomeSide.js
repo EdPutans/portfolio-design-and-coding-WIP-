@@ -1,10 +1,19 @@
 import React from 'react';
 import './styles.scss';
 import PageSide from '../PageSide/PageSide';
+import TextLink from '../TextLink/TextLink';
+import Category from '../../Pageponents/Category/Category';
 
-const HomeSide = ({ mouseX, lockedSide, renderSide, title }) => {
+const links = [
+  { text: 'Mission', link: 'mission' },
+  { text: 'Projects', link: 'projects' },
+  { text: 'About me', link: 'about_me' },
+  { text: 'Contact', link: 'contact' },
+];
+
+const HomeSide = ({ mouseX, lockedSide, renderSide, title, onSelect }) => {
   const calcHeight = () => {
-    const leftThreshold = 300;
+    const leftThreshold = 400;
     const thresholdRatio = 0.5;
     if (renderSide === 'left') {
       if (mouseX > leftThreshold) {
@@ -12,24 +21,24 @@ const HomeSide = ({ mouseX, lockedSide, renderSide, title }) => {
       }
       return thresholdRatio * leftThreshold;
     }
-    if (renderSide === 'right') {
-      if (mouseX < window.innerWidth - leftThreshold) {
-        return leftThreshold - thresholdRatio * (window.innerWidth - mouseX);
-      }
-      return thresholdRatio * leftThreshold;
+    if (mouseX < window.innerWidth - leftThreshold) {
+      return leftThreshold - thresholdRatio * (window.innerWidth - mouseX);
     }
+    return thresholdRatio * leftThreshold;
   };
 
   return (
     <PageSide title={title} side={renderSide} lockedSide={lockedSide} mouseX={mouseX}>
       <div className={`Home${renderSide}_list_container`} style={{ bottom: calcHeight() }}>
         <ul className={`Home${renderSide}_list`}>
-          <li className={`Home${renderSide}_list_item`}>Mission</li>
-          <li className={`Home${renderSide}_list_item`}>Projects</li>
-          <li className={`Home${renderSide}_list_item`}>Contact</li>
-          <li className={`Home${renderSide}_list_item`}>About me</li>
+          {links.map(l => (
+            <li className={`Home${renderSide}_list_item`}>
+              <TextLink key={l.text} text={l.text} link={l.link} onClick={() => onSelect(l.text)} />
+            </li>
+          ))}
         </ul>
       </div>
+      <Category side={lockedSide} />
     </PageSide>
   );
 };

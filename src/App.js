@@ -5,10 +5,11 @@ import HomeSide from './Components/HomeSide/HomeSide';
 const App = () => {
   const [mouseX, setMouseX] = useState(null);
   const [side, setSide] = useState(null);
+  const [renderedPage, setRenderedPage] = useState(null);
+  const onMove = e => {
+    setMouseX(e.pageX);
+  };
   useEffect(() => {
-    const onMove = e => {
-      setMouseX(e.pageX);
-    };
     document.addEventListener('mousemove', e => onMove(e), false);
     return () => {
       document.removeEventListener('mousemove', e => onMove(e), false);
@@ -21,15 +22,21 @@ const App = () => {
         renderSide="left"
         mouseX={mouseX}
         lockedSide={side}
-        setLeft={() => setSide('left')}
         title="Full stack web developer"
+        onSelect={val => {
+          setRenderedPage(val);
+          setSide('left');
+        }}
       />
       <HomeSide
         renderSide="right"
         mouseX={mouseX}
         lockedSide={side}
-        setRight={() => setSide('right')}
         title="UI UX Designer"
+        onSelect={val => {
+          setRenderedPage(val);
+          setSide('right');
+        }}
       />
     </div>
   );

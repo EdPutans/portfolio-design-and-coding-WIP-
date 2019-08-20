@@ -1,0 +1,9 @@
+@import '../../App.scss';
+
+.Textlink{
+  font-size: 20px !important;
+  color: #888824 !important; 
+  &:hover{
+    cursor: pointer;
+  }
+}

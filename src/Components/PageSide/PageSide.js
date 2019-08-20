@@ -3,8 +3,12 @@ import './styles.scss';
 
 const PageSide = ({ children, lockedSide, side, mouseX, title }) => {
   const calcWidth = () => {
+    if (lockedSide) {
+      return lockedSide === side ? 0.9 * window.innerWidth : 0.1 * window.innerWidth;
+    }
     const calcWidthRight = () =>
       lockedSide ? 0.9 * window.innerWidth : window.innerWidth - (window.innerWidth * 0.9 - mouseX);
+
     const calcWidthLeft = () =>
       lockedSide ? 0.9 * window.innerWidth : window.innerWidth - mouseX * 0.9;
     return side === 'left' ? calcWidthLeft() : calcWidthRight();
@@ -12,7 +16,7 @@ const PageSide = ({ children, lockedSide, side, mouseX, title }) => {
 
   const calcOpacity = () => {
     if (lockedSide) {
-      return side === lockedSide ? 1 : 0.1;
+      return side === lockedSide ? 0.5 : 0.1;
     }
     const calcRightOpacity = () =>
       Math.round(
